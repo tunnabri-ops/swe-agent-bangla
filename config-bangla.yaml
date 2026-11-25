@@ -1,0 +1,36 @@
+# config-bangla.yaml — SWE-agent রান কনফিগ (Bangla)
+# SWE-agent config file: run it with
+#   sweagent run --config config-bangla.yaml
+#
+# Structure verified against the upstream docs:
+#   https://swe-agent.com/latest/usage/hello_world/  (hello-world command)
+#   https://swe-agent.com/latest/usage/cl_tutorial/  (--config files; the
+#   default config is config/default.yaml and is loaded when no --config
+#   option is given, so this file only overrides what it sets)
+#
+# Keys below mirror the documented command-line flags one-to-one:
+#   --agent.model.name                  -> agent.model.name
+#   --agent.model.per_instance_cost_limit -> agent.model.per_instance_cost_limit
+#   --env.repo.github_url               -> env.repo.github_url
+#   --problem_statement.github_url      -> problem_statement.github_url
+#
+# API key: set ANTHROPIC_API_KEY (Claude) or OPENAI_API_KEY (GPT) in your
+# environment or a .env file. Never put a key in this file.
+
+agent:
+  model:
+    # Claude Sonnet 4 (Anthropic) — docs-এর hello-world উদাহরণের মডেল।
+    # GPT-4o ব্যবহার করতে চাইলে নিচের লাইনটি বদলে gpt-4o লিখুন।
+    name: claude-sonnet-4-20250514
+    # একটা issue-তে সর্বোচ্চ খরচ (ডলার)। এটা ছাড়িয়ে গেলে রান থেমে যাবে।
+    per_instance_cost_limit: 2.00
+
+env:
+  repo:
+    # যে repo-র issue ঠিক করতে হবে (docs-এর hello-world উদাহরণের repo)।
+    github_url: https://github.com/SWE-agent/test-repo
+
+problem_statement:
+  # যে GitHub issue-টি ঠিক করতে হবে (docs-এর hello-world উদাহরণের issue:
+  # test-repo-র একটা ছোট syntax error)।
+  github_url: https://github.com/SWE-agent/test-repo/issues/1
